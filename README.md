@@ -17,7 +17,7 @@ Un Arduino Uno collecte des données capteurs (température, humidité, luminosi
 ```
 ┌─────────────────────┐     USB Serial      ┌──────────────────────────┐    WiFi 802.11n    ┌─────────────────┐
 │    ARDUINO UNO      │ ──────────────────► │   PC / LAPTOP            │ ─────────────────► │ Smartphone / PC │
-│                     │     9600 bauds       │   Gateway IoT            │                    │ Client WiFi     │
+│                     │     9600 bauds      │   Gateway IoT            │                    │ Client WiFi     │
 │  ● DHT11 → D2       │                     │                          │                    │                 │
 │  ● LDR   → A0       │                     │  ● Python (pyserial)     │                    │ Dashboard       │
 │                     │                     │  ● Serveur Flask :5000   │                    │ http://IP:5000  │
@@ -269,7 +269,7 @@ python3 gateaway_iot.py
 ┌─────────────────────────────────────────────────────────┐
 │         📡 Dashboard IoT - WiFi 4 (802.11n)             │
 ├──────────────────┬──────────────────┬───────────────────┤
-│  🌡️ Température  │  💧 Humidité      │  ☀️ Luminosité    │
+│  🌡️ Température  │  💧 Humidité     │  ☀️ Luminosité    │
 │                  │                  │                   │
 │      32°C        │      69 %        │  Obscurité (712)  │
 │                  │                  │                   │
@@ -363,4 +363,4 @@ python3 gateaway_iot.py
 ##  Auteurs
 
 Projet réalisé dans le cadre du cours **Réseaux Sans Fil & Protocoles de Communication IoT**  
-2ème année Systèmes Embarqués & IoT — Année académique 2024-2025
+2ème année Systèmes Embarqués & IoT — Année académique 2025-2026
