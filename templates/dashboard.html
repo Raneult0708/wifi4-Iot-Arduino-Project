@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard IoT - WiFi 4</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>📡 Dashboard IoT - WiFi 4 (802.11n)</h1>
+
+    <div class="cards">
+        <div class="card">
+            <p>🌡️ Température</p>
+            <h2 id="temp">--</h2>
+            <p>°C</p>
+        </div>
+        <div class="card">
+            <p>💧 Humidité</p>
+            <h2 id="hum">--</h2>
+            <p>%</p>
+        </div>
+        <div class="card">
+            <p>☀️ Luminosité</p>
+            <h2 id="lum">--</h2>
+            <p>/ 1023</p>
+        </div>
+    </div>
+
+    <p id="status">Connexion...</p>
+
+    <h3>Historique (50 dernières mesures)</h3>
+    <table>
+        <thead>
+            <tr><th>Heure</th><th>Temp (°C)</th><th>Humidité (%)</th><th>Luminosité</th></tr>
+        </thead>
+        <tbody id="histo"></tbody>
+    </table>
+
+    <script>
+        function fetchData() {
+            fetch('/data')
+                .then(r => r.json())
+                .then(d => {
+                    if (d.actuel && d.actuel.temp !== undefined) {
+                        const ldr = d.actuel.lum;
+                        let label;
+                        if (ldr < 100)      label = 'Très sombre';
+                        else if (ldr < 400) label = 'Obscurité';
+                        else if (ldr < 700) label = 'Lumineux';
+                        else                label = 'Très lumineux';
+
+                        document.getElementById('temp').innerText = d.actuel.temp;
+                        document.getElementById('hum').innerText  = d.actuel.hum;
+                        document.getElementById('lum').innerText  = label + ' (' + ldr + ')';
+                        document.getElementById('status').innerText = 'Dernière mise à jour : ' + d.actuel.ts;
+                    }
+                    let rows = '';
+                    [...d.historique].reverse().forEach(m => {
+                        rows += `<tr><td>${m.ts}</td><td>${m.temp}</td><td>${m.hum}</td><td>${m.lum}</td></tr>`;
+                    });
+                    document.getElementById('histo').innerHTML = rows;
+                })
+                .catch(() => {
+                    document.getElementById('status').innerText = 'Erreur de connexion';
+                });
+        }
+        fetchData();
+        setInterval(fetchData, 3000);
+    </script>
+</body>
+</html>
