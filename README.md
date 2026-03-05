@@ -1,7 +1,7 @@
 #  Système IoT WiFi 4 — Arduino Uno + Flask Dashboard
 
 > Projet de groupe — 2ème année Systèmes Embarqués & IoT  
-> Réseaux Sans Fil & Protocoles de Communication IoT — 2024-2025
+> Réseaux Sans Fil & Protocoles de Communication IoT — 2025-2026
 
 ---
 
@@ -181,8 +181,7 @@ pip install pyserial flask
 ### 2. Bibliothèques Arduino
 
 Dans l'Arduino IDE → **Outils → Gérer les bibliothèques** :
-- `DHT sensor library` par Adafruit
-- `Adafruit Unified Sensor`
+- `DHT11` par Dhruba Saha
 
 ### 3. Téléverser le sketch
 
